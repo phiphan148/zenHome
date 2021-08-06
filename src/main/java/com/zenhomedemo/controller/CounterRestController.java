@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
 import lombok.extern.slf4j.Slf4j;
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -35,9 +37,10 @@ public class CounterRestController {
     }
 
     @GetMapping("/countersByHours/{hours}")
-    public ResponseEntity<List<Counter>> getCounterByHours(@PathVariable(value = "hours") Long hours) throws ResourceNotFoundException {
-        LocalDateTime test = LocalDateTime.now().minusHours(hours);
-        List<Counter> counters = counterRepository.findAll().stream().filter(count -> count.getDateTime().isAfter(test)).collect(Collectors.toList());
+    public ResponseEntity<List<ResultTemplate>> getCounterByHours(@PathVariable(value = "hours") Long hours) throws ResourceNotFoundException {
+        LocalDateTime timeToCheck = LocalDateTime.now().minusHours(hours);
+        List<ResultTemplate> counters = counterRepository.findAll().stream().filter(counter -> counter.getDateTime().isAfter(timeToCheck))
+                                                         .map(this::mapToResultTemplate).collect(Collectors.toList());
 
         if (counters.size() == 0) {
             throw new ResourceNotFoundException("There are no data for this get counter by " + hours + " hours");
@@ -45,6 +48,11 @@ public class CounterRestController {
 
         return ResponseEntity.ok().body(counters);
     }
+
+    public ResultTemplate mapToResultTemplate(Counter el){
+        return ResultTemplate.builder().villageName(el.getVillage().getName()).assumption(el.getAmount()).build();
+    }
+
 
     @PostMapping("counters")
     public Counter createCounter(@RequestBody Counter counter) {

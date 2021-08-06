@@ -1,6 +1,7 @@
 package com.zenhomedemo.model;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "COUNTER")
+@SuperBuilder(toBuilder = true)
 public class Counter {
 
     @Id
