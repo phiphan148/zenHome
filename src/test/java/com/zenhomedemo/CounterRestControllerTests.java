@@ -1,7 +1,7 @@
 package com.zenhomedemo;
 
 import com.zenhomedemo.controller.CounterRestController;
-import com.zenhomedemo.controller.ResultTemplate;
+import com.zenhomedemo.templateResult.ResultTemplate;
 import com.zenhomedemo.exception.ResourceNotFoundException;
 import com.zenhomedemo.model.Counter;
 import com.zenhomedemo.model.Village;

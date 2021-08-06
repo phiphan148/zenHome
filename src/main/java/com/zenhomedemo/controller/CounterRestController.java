@@ -3,6 +3,7 @@ package com.zenhomedemo.controller;
 import com.zenhomedemo.exception.ResourceNotFoundException;
 import com.zenhomedemo.model.Counter;
 import com.zenhomedemo.repository.CounterRepository;
+import com.zenhomedemo.templateResult.ResultTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

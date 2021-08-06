@@ -1,4 +1,4 @@
-package com.zenhomedemo.controller;
+package com.zenhomedemo.templateResult;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
